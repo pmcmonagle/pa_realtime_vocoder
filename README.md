@@ -2,6 +2,13 @@
 My goal is to write a reatime vocoder in C using PortAudio.
 In it's current state, it is nowhere near complete.
 
+## Setup
+- Make sure you have gcc and make available
+- Install portaudio (eg. apt-get install portaudio)
+- Clone this repository
+- Copy libportaudio.a to the repo folder
+- Run make
+
 ## Tasks Complete
 - WaveTable Synthesizer
 - BiQuad Filter (borrowed from somewhere else)
