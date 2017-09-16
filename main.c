@@ -36,7 +36,7 @@ void print_error(PaError err) {
 
 int main(int argc, char** argv) {
 	bq = bq_new(LOWPASS, 1000.0, 5.0, 1.0, SAMPLE_RATE);
-	osc = osc_new(50.0, SAMPLE_RATE, FRAMES_PER_BUFFER);
+	osc = osc_new(0.6, 120.0, SAMPLE_RATE);
 
 	// Initialize PortAudio
 	PaError err;

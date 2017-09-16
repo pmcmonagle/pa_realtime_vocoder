@@ -1,14 +1,14 @@
 // Oscillator Module
-#define TABLE_SIZE (1024)
 typedef struct _oscillator {
-	float wave_table[TABLE_SIZE];
+	float *wave_table;
 	float frequency;
+	int sample_rate;
+	int table_size;
 	int phase;
-	int frames_per_buffer;
 } oscillator;
 
 // Constructor
-oscillator* osc_new(float frequency, int sample_rate, int frames_per_buffer);
+oscillator* osc_new(float gain, float frequency, int sample_rate);
 
 // Provides the output of the oscillator
 float osc_process(oscillator* osc);
