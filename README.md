@@ -1,6 +1,6 @@
 # PortAudio Realtime Vocoder
 My goal is to write a reatime vocoder in C using PortAudio.
-In it's current state, it is nowhere near complete.
+In its current state, it is nowhere near complete.
 
 ## Setup
 - Make sure you have gcc and make available
