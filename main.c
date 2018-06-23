@@ -1,13 +1,16 @@
 #include "include/biquad.h"
 #include "src/oscillator.h"
+#include "src/bitcrush.h"
 #include "portaudio.h"
 #include <stdio.h>
 
-#define NUM_SECONDS (20)
+// 44100, 22050, 11025
+#define NUM_SECONDS (2000)
 #define SAMPLE_RATE (44100)
 #define FRAMES_PER_BUFFER (256)
 
 biquad* bq;
+bitcrush* bitc;
 oscillator* osc;
 
 static int callback (
@@ -23,8 +26,13 @@ static int callback (
 	unsigned int i;
 
 	for(i = 0; i < framesPerBuffer; i++){
-		//*out++ = bq_process(bq, *in++);
-		*out++ = osc_process(osc);
+		*out++ = 
+			bq_process(bq,
+			bitc_process(bitc,
+				*in++
+			)
+		);
+		//*out++ = osc_process(osc);
 	}
 
 	return 0;
@@ -37,6 +45,7 @@ void print_error(PaError err) {
 int main(int argc, char** argv) {
 	bq = bq_new(LOWPASS, 1000.0, 5.0, 1.0, SAMPLE_RATE);
 	osc = osc_new(0.4, 120.0, SAW, SAMPLE_RATE);
+	bitc = bitc_new(1);
 
 	// Initialize PortAudio
 	PaError err;
